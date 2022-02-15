@@ -8,12 +8,13 @@ import {FilterValuesType} from "../../App";
 type TodoListPropsType = {
   title: string
   tasks: Array<TaskType>
-  removeTask: (taskID: number) => void
+  removeTask: (taskID: string) => void
   changeFilter: (filter: FilterValuesType) => void
+  addTask: (title: string) => void
 }
 
 export type TaskType = {
-  id: number
+  id: string
   title: string
   isDone: boolean
 }
@@ -23,7 +24,7 @@ export const TodoList: React.FC<TodoListPropsType> = (props) => {
     <div>
       <div>
         <TodoListHeader title={props.title}/>
-        <AddTaskForm/>
+        <AddTaskForm addTask={props.addTask}/>
         <TaskList
           tasks={props.tasks}
           removeTask={props.removeTask}
