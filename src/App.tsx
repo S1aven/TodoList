@@ -7,13 +7,13 @@ export type FilterValuesType = "all" | "active" | "completed";
 
 const App = () => {
 
-  //     RemoveTask
-
   const [tasks, setTasks] = useState<Array<TaskType>>([
     {id: v1(), title: 'HTML', isDone: true},
     {id: v1(), title: 'CSS', isDone: false},
     {id: v1(), title: 'JS/TS', isDone: true}
   ])
+
+  //     RemoveTask
 
   const removeTask = (taskID: string) => {
     const filteredTasks = tasks.filter(task => task.id !== taskID)
@@ -53,6 +53,12 @@ const App = () => {
     setTasks(newTasks)
   }
 
+  //   CheckBox
+
+  const changeTaskStatus = (taskID: string, isDone: boolean) => {
+    setTasks(tasks.map(t => t.id === taskID ? {...t, isDone: isDone} : t))
+  }
+
   return (
     <div className="App">
       <TodoList
@@ -61,9 +67,9 @@ const App = () => {
         removeTask={removeTask}
         changeFilter={changeFilter}
         addTask={addTask}
+        changeTaskStatus={changeTaskStatus}
+        filter={filter}
       />
-      {/*<TodoList title={'What to read'} tasks={tasks_2}/>*/}
-      {/*<TodoList title={'What to duy'} tasks={tasks_3}/>*/}
     </div>
   );
 }
