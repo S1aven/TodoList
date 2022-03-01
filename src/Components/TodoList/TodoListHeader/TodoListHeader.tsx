@@ -3,9 +3,11 @@ import {FilterValuesType} from "../../../App";
 import {AddTaskForm} from "./AddTaskForm/AddTaskForm";
 
 type TodoListHeaderPropsType = {
+  todolistID: string
   filter: FilterValuesType
   title: string
-  addTask: (title: string) => void
+  addTask: (title: string, todolistID: string) => void
+  removeTodolist: (todolistID: string) => void
 }
 
 export const TodoListHeader: React.FC<TodoListHeaderPropsType> = (props ) => {
@@ -20,13 +22,21 @@ export const TodoListHeader: React.FC<TodoListHeaderPropsType> = (props ) => {
       break
   }
 
+  const removeTodolist = () => {
+    props.removeTodolist(props.todolistID)
+  }
+
   return (
     <div>
       <h3>
         {props.title}
         <div className={'filter-header'}>{text}</div>
+        <button onClick={removeTodolist}>x</button>
       </h3>
-      <AddTaskForm addTask={props.addTask}/>
+      <AddTaskForm
+        id={props.todolistID}
+        addTask={props.addTask}
+      />
     </div>
   );
 };

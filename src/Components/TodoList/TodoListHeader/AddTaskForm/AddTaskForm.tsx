@@ -2,7 +2,8 @@ import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {Button} from "../../../Button/Button";
 
 type AddTaskFormPropsType = {
-  addTask: (title: string) => void
+  id: string
+  addTask: (title: string, todolistID: string) => void
 }
 
 export const AddTaskForm: React.FC<AddTaskFormPropsType> = (props) => {
@@ -25,7 +26,7 @@ export const AddTaskForm: React.FC<AddTaskFormPropsType> = (props) => {
     const trimmedTitle = title.trim()
 
     if(trimmedTitle) {
-      props.addTask(trimmedTitle)
+      props.addTask(trimmedTitle, props.id)
     } else {
       setError(true)
     }

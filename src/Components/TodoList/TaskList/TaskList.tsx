@@ -1,21 +1,23 @@
 import React from 'react';
-import {TaskType} from "../TodoList";
+import {TaskType} from "../../../App";
 import {Task} from "./Task/Task";
 import {ControlButton} from "./ControlButton/ControlButton";
 import {FilterValuesType} from "../../../App";
 
 type TaskListPropsType = {
+  todolistID: string
   tasks: Array<TaskType>
-  removeTask: (taskID: string) => void
-  changeTaskStatus: (taskID: string, isDone: boolean) => void
+  removeTask: (taskID: string, todolistID: string) => void
+  changeTaskStatus: (taskID: string, isDone: boolean, todolistID: string) => void
   filter: FilterValuesType
-  changeFilter: (filter: FilterValuesType) => void
+  changeFilter: (filter: FilterValuesType, todolistID: string) => void
 }
 
 export const TaskList: React.FC<TaskListPropsType> = (props) => {
 
   const tackComponentList = props.tasks.map(task => {
     return <Task key={task.id}
+                 todolistID={props.todolistID}
                  {...task}
                  removeTask={props.removeTask}
                  changeTaskStatus={props.changeTaskStatus}
@@ -37,6 +39,7 @@ export const TaskList: React.FC<TaskListPropsType> = (props) => {
       {taskList}
 
       <ControlButton
+        todolistID={props.todolistID}
         changeFilter={props.changeFilter}
         filter={props.filter}
       />

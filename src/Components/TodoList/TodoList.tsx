@@ -1,22 +1,18 @@
 import React from "react";
 import {TodoListHeader} from "./TodoListHeader/TodoListHeader";
 import {TaskList} from "./TaskList/TaskList";
-import {FilterValuesType} from "../../App";
+import {FilterValuesType, TaskType} from "../../App";
 
 type TodoListPropsType = {
+  todolistID: string
   title: string
   tasks: Array<TaskType>
   filter: FilterValuesType
-  removeTask: (taskID: string) => void
-  changeFilter: (filter: FilterValuesType) => void
-  addTask: (title: string) => void
-  changeTaskStatus: (taskID: string, isDone: boolean) => void
-}
-
-export type TaskType = {
-  id: string
-  title: string
-  isDone: boolean
+  removeTask: (taskID: string, todolistID: string) => void
+  changeFilter: (filter: FilterValuesType, todolistID: string) => void
+  addTask: (title: string, todolistID: string) => void
+  changeTaskStatus: (taskID: string, isDone: boolean, todolistID: string) => void
+  removeTodolist: (todolistID: string) => void
 }
 
 export const TodoList: React.FC<TodoListPropsType> = (props) => {
@@ -24,11 +20,14 @@ export const TodoList: React.FC<TodoListPropsType> = (props) => {
     <div>
       <div>
         <TodoListHeader
+          removeTodolist={props.removeTodolist}
+          todolistID={props.todolistID}
           title={props.title}
           filter={props.filter}
           addTask={props.addTask}
         />
         <TaskList
+          todolistID={props.todolistID}
           tasks={props.tasks}
           removeTask={props.removeTask}
           changeTaskStatus={props.changeTaskStatus}
