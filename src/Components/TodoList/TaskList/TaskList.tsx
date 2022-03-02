@@ -7,10 +7,10 @@ import {FilterValuesType} from "../../../App";
 type TaskListPropsType = {
   todolistID: string
   tasks: Array<TaskType>
-  removeTask: (taskID: string, todolistID: string) => void
-  changeTaskStatus: (taskID: string, isDone: boolean, todolistID: string) => void
+  removeTask: (todolistID: string, taskID: string) => void
+  changeTaskStatus: (todolistID: string, taskID: string, isDone: boolean) => void
   filter: FilterValuesType
-  changeFilter: (filter: FilterValuesType, todolistID: string) => void
+  changeFilter: (todolistID: string, filter: FilterValuesType) => void
 }
 
 export const TaskList: React.FC<TaskListPropsType> = (props) => {

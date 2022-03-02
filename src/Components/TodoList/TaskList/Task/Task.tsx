@@ -5,17 +5,17 @@ import {Button} from "../../../Button/Button";
 type TaskPropsType = TaskType & {
   todolistID: string
   removeTask: (taskID: string, todolistID: string) => void
-  changeTaskStatus: (taskID: string, isDone: boolean, todolistID: string) => void
+  changeTaskStatus: (todolistID: string, taskID: string, isDone: boolean) => void
 }
 
 export const Task: React.FC<TaskPropsType> = (props) => {
   
   const onRemoveHandler = () => {
-    props.removeTask(props.id, props.todolistID)
+    props.removeTask(props.todolistID, props.id )
   }
 
   const changeTaskStatus = (e:ChangeEvent<HTMLInputElement>) => {
-    props.changeTaskStatus(props.id, e.currentTarget.checked, props.todolistID)
+    props.changeTaskStatus(props.todolistID, props.id, e.currentTarget.checked)
   }
 
   // const taskClass = props.isDone ? 'completed-task' : ''

@@ -5,13 +5,13 @@ import {Button} from "../../../Button/Button";
 type controlButtonPropsType = {
   todolistID: string
   filter: FilterValuesType
-  changeFilter: (filter: FilterValuesType, todolistID: string) => void
+  changeFilter: (todolistID: string, filter: FilterValuesType) => void
 }
 
 export const ControlButton: React.FC<controlButtonPropsType> = (props) => {
 
-  const onClickSetFilter = (filter: FilterValuesType, todolistID: string) => {
-    return () => props.changeFilter(filter, todolistID)
+  const onClickSetFilter = (todolistID: string, filter: FilterValuesType) => {
+    return () => props.changeFilter(todolistID, filter)
   }
 
   // const onAllClickHandler = () => {
@@ -30,15 +30,15 @@ export const ControlButton: React.FC<controlButtonPropsType> = (props) => {
         <Button
           classes={props.filter === 'all' ?  'button-active' : ''}
           name={'All'}
-          callBack={onClickSetFilter('all', props.todolistID)}
+          callBack={onClickSetFilter(props.todolistID,'all')}
         />
         <Button
           classes={props.filter === 'active' ?  'button-active' : ''}
-          name={'Active'} callBack={onClickSetFilter('active', props.todolistID)}
+          name={'Active'} callBack={onClickSetFilter(props.todolistID,'active')}
         />
         <Button
           classes={props.filter === 'completed' ?  'button-active' : ''}
-          name={'Completed'} callBack={onClickSetFilter('completed', props.todolistID)}
+          name={'Completed'} callBack={onClickSetFilter(props.todolistID,'completed')}
         />
       </div>
     </div>

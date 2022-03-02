@@ -6,7 +6,7 @@ type TodoListHeaderPropsType = {
   todolistID: string
   filter: FilterValuesType
   title: string
-  addTask: (title: string, todolistID: string) => void
+  addTask: (todolistID: string, title: string) => void
   removeTodolist: (todolistID: string) => void
 }
 
@@ -34,7 +34,7 @@ export const TodoListHeader: React.FC<TodoListHeaderPropsType> = (props ) => {
         <button onClick={removeTodolist}>x</button>
       </h3>
       <AddTaskForm
-        id={props.todolistID}
+        todolistID={props.todolistID}
         addTask={props.addTask}
       />
     </div>
