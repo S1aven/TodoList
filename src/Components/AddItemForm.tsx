@@ -1,4 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import {TextField} from "@mui/material";
 
 export type PropsType = {
   callback: (title: string) => void
@@ -37,6 +38,12 @@ export const AddItemForm:React.FC<PropsType> = (props) => {
              onKeyPress={onKeyPressHandler}
              className={error ? "error" : ""}
       />
+      {/*<TextField value={title}*/}
+      {/*           variant={"outlined"}*/}
+      {/*       onChange={onChangeHandler}*/}
+      {/*       onKeyPress={onKeyPressHandler}*/}
+      {/*       className={error ? "error" : ""}*/}
+      {/*/>*/}
       <button onClick={addTask}>+</button>
       {error && <div className="error-message">{error}</div>}
     </div>
