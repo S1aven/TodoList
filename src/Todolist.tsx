@@ -2,7 +2,7 @@ import React, {ChangeEvent} from 'react';
 import {FilterValuesType} from './App';
 import AddItemForm from "./AddItemForm";
 import EditableSpan from "./EditableSpan";
-import {Button, ButtonGroup, Checkbox, IconButton, List} from "@mui/material";
+import {Button, Checkbox, IconButton, List} from "@mui/material";
 import {Delete} from "@mui/icons-material";
 
 export type TaskType = {
