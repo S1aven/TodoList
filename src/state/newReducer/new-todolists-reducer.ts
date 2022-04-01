@@ -1,4 +1,4 @@
-import {FilterValuesType, TodolistType} from "../App";
+import {FilterValuesType, TodolistType} from "../../App";
 import {v1} from "uuid";
 
 export type RemoveTodolistAT = {
@@ -9,6 +9,7 @@ export type RemoveTodolistAT = {
 export type AddTodolistAT = {
   type: 'ADD-TODOLIST'
   title: string
+  todolistId: string
 }
 
 export type ChangeTodolistFilterAT = {
@@ -36,7 +37,7 @@ export const newTodolistsReducer = (todolists: Array<TodolistType>, action: Acti
     case 'ADD-TODOLIST':
       return [
         ...todolists,
-        {id: v1(), title: action.title, filter: "all"}
+        {id: action.todolistId, title: action.title, filter: "all"}
       ]
     case 'CHANGE-TODOLIST-FILTER':
       return todolists.map(tl => tl.id === action.id ? {...tl, filter: action.filter} : tl)
@@ -54,7 +55,7 @@ export const RemoveTodolistAC = (id: string): RemoveTodolistAT => {
     id: id
   }
 }
-export const AddTodolistAT = (title: string): AddTodolistAT => ({type: 'ADD-TODOLIST', title: title})
+export const AddTodolistAC = (title: string): AddTodolistAT => ({type: 'ADD-TODOLIST', title: title, todolistId: v1()})
 export const ChangeTodolistFilterAC = (id: string, filter: FilterValuesType): ChangeTodolistFilterAT => {
   return {
     type: 'CHANGE-TODOLIST-FILTER',

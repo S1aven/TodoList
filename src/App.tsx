@@ -122,7 +122,6 @@ function App() {
       <Grid key={tl.id} item>
         <Paper style={{padding: '10px'}}>
           <Todolist
-            // key={tl.id}
             id={tl.id}
             title={tl.title}
             tasks={tasksForTodolist}
