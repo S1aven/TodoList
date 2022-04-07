@@ -7,8 +7,10 @@ type AddItemFormPropsType = {
 }
 
 const AddItemForm: FC<AddItemFormPropsType> = (props) => {
+
   const [title, setTitle] = useState("")
   const [error, setError] = useState<string | null>(null)
+
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.currentTarget.value)
   }
@@ -29,11 +31,6 @@ const AddItemForm: FC<AddItemFormPropsType> = (props) => {
   }
   return (
     <div>
-      {/*<input value={title}*/}
-      {/*       onChange={onChangeHandler}*/}
-      {/*       onKeyPress={onKeyPressHandler}*/}
-      {/*       className={error ? "error" : ""}*/}
-      {/*/>*/}
       <TextField
         variant={"standard"}
         value={title}
@@ -46,7 +43,6 @@ const AddItemForm: FC<AddItemFormPropsType> = (props) => {
       <IconButton onClick={addItem}>
         <AddTask fontSize={'small'} color={'secondary'}/>
       </IconButton>
-      {/*{error && <div className="error-message">{error}</div>}*/}
     </div>
   );
 };

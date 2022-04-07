@@ -4,6 +4,11 @@ import AddItemForm from "./AddItemForm";
 import EditableSpan from "./EditableSpan";
 import {Button, Checkbox, IconButton, List} from "@mui/material";
 import {Delete} from "@mui/icons-material";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "./state/store";
+import {TodolistType} from "./AppWithRedux";
+import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./state/reducer/tasks-reducer";
+import {TasksStateType} from "./AppwithReducers";
 
 export type TaskType = {
   id: string
@@ -26,6 +31,35 @@ type PropsType = {
 }
 
 export function Todolist(props: PropsType) {
+
+  // const todolists = useSelector<AppRootStateType, TodolistType[]>(state => state.todolists)
+  // const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
+  //
+  // const dispatch = useDispatch()
+  //
+  // // Tasks
+  // function removeTask(id: string, todolistId: string) {
+  //   let action = removeTaskAC(todolistId, id);
+  //   dispatch(action)
+  // }
+  //
+  // function addTask(title: string, todolistId: string) {
+  //   let action = addTaskAC(todolistId, title)
+  //   dispatch(action)
+  // }
+  //
+  // function changeStatus(id: string, isDone: boolean, todolistId: string) {
+  //   let action = changeTaskStatusAC(todolistId, id, isDone)
+  //   dispatch(action)
+  // }
+  //
+  // function changeTaskTitle(id: string, title: string, todolistId: string) {
+  //   let action = changeTaskTitleAC(todolistId, id, title)
+  //   dispatch(action)
+  // }
+
+  // const todolist = useSelector<AppRootStateType, TodolistType>(state => state.todolists.filter(todo => todo.id === props.id)[0])
+  // const task = useSelector<AppRootStateType, TaskType[]>(state => state.tasks[props.id])
 
   const removeTodolist = () => props.removeTodolist(props.id);
   const onAllClickHandler = () => props.changeFilter("all", props.id);
