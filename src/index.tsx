@@ -5,10 +5,12 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import {ThemeProvider} from "@emotion/react";
 import {createTheme, CssBaseline} from "@mui/material";
-import {AppWithRedux} from "./AppWithRedux";
+// import {AppWithRedux} from "./AppWithRedux";
 import {Provider} from "react-redux";
 import {store} from "./state/store";
-import AppwithReducers from "./AppwithReducers";
+// import AppwithReducers from "./AppWithReducers";
+// import {AppWithReducersNew} from "./AppWithReducersNew";
+import {AppWithReduxNew} from "./AppWithReduxNew";
 
 const theme = createTheme({
   palette: {
@@ -20,7 +22,7 @@ ReactDOM.render(
   <ThemeProvider theme={theme}>
     <CssBaseline />
     <Provider store={store}>
-      <AppwithReducers/>
+      <AppWithReduxNew/>
     </Provider>
   </ThemeProvider>,
   document.getElementById('root'));
