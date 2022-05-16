@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC, KeyboardEvent, useState} from 'react';
+import React, {ChangeEvent, FC, KeyboardEvent, useCallback, useState} from 'react';
 import {IconButton, TextField} from "@mui/material";
 import {AddTask} from "@mui/icons-material";
 
@@ -6,15 +6,17 @@ type AddItemFormPropsType = {
   addItem: (newTitle: string) => void
 }
 
-const AddItemForm: FC<AddItemFormPropsType> = (props) => {
+export const AddItemForm: FC<AddItemFormPropsType> = React.memo((props) => {
+  console.log('AddItemForm')
 
   const [title, setTitle] = useState("")
   const [error, setError] = useState<string | null>(null)
 
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChangeHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.currentTarget.value)
-  }
-  const addItem = () => {
+  }, []);
+
+  const addItem = useCallback(() => {
     const newTitle = title.trim();
     if (newTitle !== "") {
       props.addItem(newTitle);
@@ -22,13 +24,18 @@ const AddItemForm: FC<AddItemFormPropsType> = (props) => {
     } else {
       setError("Title is required");
     }
-  }
-  const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-    setError(null);
+  }, [props.addItem, title]);
+
+  const onKeyPressHandler = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
+    if (error !== null) {
+      setError(null);
+    }
+
     if (e.key === "Enter") {
       addItem();
     }
-  }
+  }, [error ,addItem]);
+
   return (
     <div>
       <TextField
@@ -45,6 +52,4 @@ const AddItemForm: FC<AddItemFormPropsType> = (props) => {
       </IconButton>
     </div>
   );
-};
-
-export default AddItemForm;
+});

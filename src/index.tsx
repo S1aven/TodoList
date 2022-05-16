@@ -1,16 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {ThemeProvider} from "@emotion/react";
 import {createTheme, CssBaseline} from "@mui/material";
-// import {AppWithRedux} from "./AppWithRedux";
 import {Provider} from "react-redux";
 import {store} from "./state/store";
-// import AppwithReducers from "./AppWithReducers";
-// import {AppWithReducersNew} from "./AppWithReducersNew";
-import {AppWithReduxNew} from "./AppWithReduxNew";
+import {AppWithRedux} from "./AppWithRedux";
 
 const theme = createTheme({
   palette: {
@@ -22,7 +18,7 @@ ReactDOM.render(
   <ThemeProvider theme={theme}>
     <CssBaseline />
     <Provider store={store}>
-      <AppWithReduxNew/>
+      <AppWithRedux/>
     </Provider>
   </ThemeProvider>,
   document.getElementById('root'));

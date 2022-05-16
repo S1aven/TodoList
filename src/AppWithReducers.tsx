@@ -1,8 +1,8 @@
-import React, {useReducer, useState} from 'react';
+import React, {useReducer} from 'react';
 import './App.css';
-import {TaskType, Todolist} from './Todolist';
+import {TaskType, Todolist} from './components/Todolist';
 import {v1} from 'uuid';
-import AddItemForm from "./AddItemForm";
+import {AddItemForm} from "./AddItemForm";
 import {AppBar, Box, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@mui/material";
 import {Menu} from "@mui/icons-material";
 import {
@@ -34,7 +34,7 @@ export type TasksStateType = {
 // U - update
 // D - delete +
 
-export function AppWithReducersNew() {
+export function AppWithReducers() {
   // BLL:
   const todolistId1 = v1();
   const todolistId2 = v1();
